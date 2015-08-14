@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Simple SVG shapes</title>
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.2/html5shiv.js"></script>
+      <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.6/d3.min.js"></script>
+    <script>
+      $(function() {
+        var canvas = d3
+          .select("body")
+          .append("svg")
+          .attr("width", 300)
+          .attr("height", 300);
+
+        var circle = canvas
+          .append("circle")
+          .attr("cx", 150)
+          .attr("cy", 150)
+          .attr("z", 50)
+          .attr("r", 50)
+          .attr("fill", "red");
+
+        var circle = canvas
+          .append("rect")
+          .attr("width", 100)
+          .attr("height", 50)
+          .attr("fill", "red");
+
+        var circle = canvas
+          .append("line")
+          .attr("x1", 0)
+          .attr("y1", 100)
+          .attr("x2", 400)
+          .attr("y2", 400)
+          .attr("stroke", "green")
+          .attr("stroke-width", 10);
+      });
+    </script>
+  </body>
+</html>
