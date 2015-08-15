@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Append</title>
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.2/html5shiv.js"></script>
+      <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.6/d3.min.js"></script>
+    <script>
+      $(function() {
+
+        var canvas = d3
+          .select("body")
+          .append("svg")
+          .attr("width", 500)
+          .attr("height", 500);
+
+          var diagonal = d3.svg
+            .diagonal()
+            .source({ x: 10, y: 10})
+            .target({ x: 300, y: 300});
+
+          canvas
+            .append("path")
+            .attr("fill", "none")
+            .attr("stroke", "black")
+            .attr("d", diagonal)
+
+      });
+    </script>
+  </body>
+</html>
