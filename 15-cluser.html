@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Cluster layout</title>
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.2/html5shiv.js"></script>
+      <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.6/d3.js"></script>
+    <script>
+      $(function() {
+
+        var canvas = d3
+          .select("body")
+          .append("svg")
+          .attr("width", 500)
+          .attr("height", 500)
+          .append("g")
+            .attr("transform", "translate(50, 50)");
+
+        var tree = d3.layout
+          .cluster()
+          .size([400, 400]);
+
+        d3.json("15/mydata.json", function(data) {
+          var nodes = tree.nodes(data);
+          var links = tree.links(nodes);
+
+          var diagonal = d3.svg
+            .diagonal()
+            .projection(function(d) {
+              return [d.y, d.x];
+            });
+
+          canvas
+            .selectAll(".link")
+            .data(links)
+            .enter()
+              .append("path")
+              .attr("class", "link")
+              .attr("fill", "none")
+              .attr("stroke", "lightgray")
+              .attr("d", diagonal);
+
+          var node = canvas
+            .selectAll(".node")
+            .data(nodes)
+            .enter()
+              .append("g")
+              .attr("class", "node")
+              .attr("transform", function(d) {
+                return "translate(" + d.y + ", " + d.x + ")";
+              });
+
+          node
+            .append("circle")
+            .attr("r", 5)
+            .attr("fill", "steelblue");
+
+          node
+            .append("text")
+            .text(function(d) {
+              return d.name;
+            });
+
+        });
+
+      });
+    </script>
+  </body>
+</html>
